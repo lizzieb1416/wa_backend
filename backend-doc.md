@@ -21,3 +21,17 @@ Python api.py --> Runs in port 5000
 python 
 from api import db
 db.create_all()
+
+## STEPS AFTER CLONING REPOSITORY FROM GITHUB 
+
+1. Create and activate envirornement 
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt 
+2. Set up DB 
+python 
+from api import db
+db.create_all()
+3. See the frontend documentation to set up after cloning 
+
+
