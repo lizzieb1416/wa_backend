@@ -5,11 +5,9 @@ import json
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' # ENV
 db = SQLAlchemy(app)
 CORS(app)
-#CORS(app, resources={r"/*": {"origins": "*"}})
-#app.config['CORS_HEADERS'] = 'Content-Type'
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,9 +18,6 @@ class Task(db.Model):
         self.description = description
         self.completed = completed
     
-#    def __repr__(self):
-#        return self.description
-
 
 @app.route('/todo-list', methods=['GET'])
 def todo_list():
@@ -69,7 +64,6 @@ def delete_task(id):
     return 'deleted'
 
 @app.route('/update/<id>/', methods=['POST'])
-#@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def update_task(id):
     if request.method == 'POST':
         task = Task.query.get(id)
@@ -98,7 +92,7 @@ def save_todolist():
                       'completed' : task.completed
                     })
     
-    with open('todolist.json', 'w') as json_file:
+    with open('todolist.json', 'w') as json_file: # ENV
         json.dump(tasks, json_file)
         
     return 'List saved!'
@@ -113,7 +107,7 @@ def load_todolist():
         db.session.commit()
 
     # Loading ancient list and sending it to frontend
-    json_file = open('todolist.json',)
+    json_file = open('todolist.json',)  # ENV
     
     data = json.load(json_file)
     

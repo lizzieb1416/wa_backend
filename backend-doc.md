@@ -32,6 +32,18 @@ pip install -r requirements.txt
 python 
 from api import db
 db.create_all()
-3. See the frontend documentation to set up after cloning 
+exit()
+3. run the api
+python api.py
+4. See the frontend documentation to set up after cloning 
+
+## POSTGRESQL 
+https://www.youtube.com/watch?v=XZ_gAWdGzZk
+https://www.youtube.com/watch?v=w25ea_I89iM
+https://www.youtube.com/watch?v=3HPq12w-dww&list=PLIWLW8_gNNc1dLUGuSAzpsf3zRDrR-yKy&index=65
+
+## ENV VARIABLES
+https://medium.com/@dushan14/create-a-web-application-with-python-flask-postgresql-and-deploy-on-heroku-243d548335cc
+
 
 
