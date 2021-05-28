@@ -19,16 +19,16 @@ class Task(db.Model):
         self.completed = completed
     
 
-@app.route('/todo-list', methods=['GET'])
-def todo_list():
-    '''Shows all the tasks'''
+# @app.route('/todo-list', methods=['GET'])
+# def todo_list():
+#     '''Shows all the tasks'''
     
-    todo_list = []
+#     todo_list = []
     
-    return jsonify({'todo_list' : todo_list})
+#     return jsonify({'todo_list' : todo_list})
 
 
-@app.route('/add/', methods=['POST'])
+@app.route('/api/add/', methods=['POST'])
 def add_task():
     description = request.json['description']
     completed = request.json['completed']
@@ -41,7 +41,7 @@ def add_task():
     return 'Done'
     
 
-@app.route('/tasks/', methods=['GET'])
+@app.route('/api/tasks/', methods=['GET'])
 def get_tasks():
     all_tasks = Task.query.all()
     tasks = []
@@ -55,7 +55,7 @@ def get_tasks():
     return jsonify({ 'tasks' : tasks })
 
 
-@app.route('/delete/<id>/', methods=['DELETE'])
+@app.route('/api/delete/<id>/', methods=['DELETE'])
 def delete_task(id):
     task = Task.query.get(id)
     db.session.delete(task)
@@ -63,7 +63,7 @@ def delete_task(id):
     
     return 'deleted'
 
-@app.route('/update/<id>/', methods=['POST'])
+@app.route('/api/update/<id>/', methods=['POST'])
 def update_task(id):
     if request.method == 'POST':
         task = Task.query.get(id)
@@ -80,7 +80,7 @@ def update_task(id):
     else: 
         return 'error'
 
-@app.route('/save/', methods=['GET'])
+@app.route('/api/save/', methods=['GET'])
 def save_todolist():
     all_tasks = Task.query.all()
     
@@ -97,7 +97,7 @@ def save_todolist():
         
     return 'List saved!'
 
-@app.route('/load/', methods=['GET', 'POST'])
+@app.route('/api/load/', methods=['GET', 'POST'])
 def load_todolist():
 
     # Deleting actual list
