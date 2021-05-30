@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 import json
+from os import environ
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' # ENV
+app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 CORS(app)
 
@@ -19,16 +20,7 @@ class Task(db.Model):
         self.completed = completed
     
 
-@app.route('/todo-list', methods=['GET'])
-def todo_list():
-    '''Shows all the tasks'''
-    
-    todo_list = []
-    
-    return jsonify({'todo_list' : todo_list})
-
-
-@app.route('/add/', methods=['POST'])
+@app.route('/api/add/', methods=['POST'])
 def add_task():
     description = request.json['description']
     completed = request.json['completed']
@@ -41,7 +33,7 @@ def add_task():
     return 'Done'
     
 
-@app.route('/tasks/', methods=['GET'])
+@app.route('/api/tasks/', methods=['GET'])
 def get_tasks():
     all_tasks = Task.query.all()
     tasks = []
@@ -55,7 +47,7 @@ def get_tasks():
     return jsonify({ 'tasks' : tasks })
 
 
-@app.route('/delete/<id>/', methods=['DELETE'])
+@app.route('/api/delete/<id>/', methods=['DELETE'])
 def delete_task(id):
     task = Task.query.get(id)
     db.session.delete(task)
@@ -63,7 +55,7 @@ def delete_task(id):
     
     return 'deleted'
 
-@app.route('/update/<id>/', methods=['POST'])
+@app.route('/api/update/<id>/', methods=['POST'])
 def update_task(id):
     if request.method == 'POST':
         task = Task.query.get(id)
@@ -80,7 +72,7 @@ def update_task(id):
     else: 
         return 'error'
 
-@app.route('/save/', methods=['GET'])
+@app.route('/api/save/', methods=['GET'])
 def save_todolist():
     all_tasks = Task.query.all()
     
@@ -92,12 +84,12 @@ def save_todolist():
                       'completed' : task.completed
                     })
     
-    with open('todolist.json', 'w') as json_file: # ENV
+    with open(environ.get("JSON_FILE_PATH"), 'w') as json_file: # ENV
         json.dump(tasks, json_file)
         
     return 'List saved!'
 
-@app.route('/load/', methods=['GET', 'POST'])
+@app.route('/api/load/', methods=['GET', 'POST'])
 def load_todolist():
 
     # Deleting actual list
@@ -107,7 +99,7 @@ def load_todolist():
         db.session.commit()
 
     # Loading ancient list and sending it to frontend
-    json_file = open('todolist.json',)  # ENV
+    json_file = open(environ.get("JSON_FILE_PATH"),)  # ENV
     
     data = json.load(json_file)
     
@@ -125,10 +117,6 @@ def load_todolist():
     
 
         
-        
-        
-    
-    
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

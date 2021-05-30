@@ -43,7 +43,8 @@ https://www.youtube.com/watch?v=w25ea_I89iM
 https://www.youtube.com/watch?v=3HPq12w-dww&list=PLIWLW8_gNNc1dLUGuSAzpsf3zRDrR-yKy&index=65
 
 ## ENV VARIABLES
-https://medium.com/@dushan14/create-a-web-application-with-python-flask-postgresql-and-deploy-on-heroku-243d548335cc
+https://itnext.io/start-using-env-for-your-flask-project-and-stop-using-environment-variables-for-development-247dc12468be
+https://hackingandslacking.com/configuring-your-flask-application-4e5341d7affb
 
 
 
