@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 import json
+from os import environ
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' # ENV
+app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 CORS(app)
 
@@ -18,15 +19,6 @@ class Task(db.Model):
         self.description = description
         self.completed = completed
     
-
-# @app.route('/todo-list', methods=['GET'])
-# def todo_list():
-#     '''Shows all the tasks'''
-    
-#     todo_list = []
-    
-#     return jsonify({'todo_list' : todo_list})
-
 
 @app.route('/api/add/', methods=['POST'])
 def add_task():
@@ -92,7 +84,7 @@ def save_todolist():
                       'completed' : task.completed
                     })
     
-    with open('todolist.json', 'w') as json_file: # ENV
+    with open(environ.get("JSON_FILE_PATH"), 'w') as json_file: # ENV
         json.dump(tasks, json_file)
         
     return 'List saved!'
@@ -107,7 +99,7 @@ def load_todolist():
         db.session.commit()
 
     # Loading ancient list and sending it to frontend
-    json_file = open('todolist.json',)  # ENV
+    json_file = open(environ.get("JSON_FILE_PATH"),)  # ENV
     
     data = json.load(json_file)
     
@@ -125,10 +117,6 @@ def load_todolist():
     
 
         
-        
-        
-    
-    
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
