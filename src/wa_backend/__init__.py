@@ -1,12 +1,19 @@
+from __future__ import annotations
+__version__ = "0.1.1"
+
+import logging
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import json
 from os import environ
 
-
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
+
+# Config required to create db
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get("DATABASE_URL", "sqlite:///database.db")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = "False"
+
 db = SQLAlchemy(app)
 CORS(app)
 
@@ -31,7 +38,6 @@ def add_task():
     db.session.commit()
     
     return 'Done'
-    
 
 @app.route('/api/tasks/', methods=['GET'])
 def get_tasks():
@@ -45,7 +51,6 @@ def get_tasks():
                     })
     
     return jsonify({ 'tasks' : tasks })
-
 
 @app.route('/api/delete/<id>/', methods=['DELETE'])
 def delete_task(id):

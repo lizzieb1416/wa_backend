@@ -139,3 +139,5 @@ cython_debug/
 
 todolist.json
 database.db
+
+.vscode/
