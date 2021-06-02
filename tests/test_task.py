@@ -2,6 +2,7 @@ import unittest
 
 from wa_backend import Task
 
+
 class TaskTest(unittest.TestCase):
     def setUp(self):
         self.task = Task("Dummy task", False)
