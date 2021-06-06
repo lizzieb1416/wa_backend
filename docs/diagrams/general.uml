@@ -1,0 +1,14 @@
+@startuml
+
+package "wa_backend" #LightBlue
+package "wa_frontend"
+
+database "db"
+storage "storage"
+
+wa_frontend <--> wa_backend : REST API
+wa_backend --> db
+wa_backend --> storage : Save/Load file
+
+@enduml
+

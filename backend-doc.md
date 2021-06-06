@@ -1,6 +1,6 @@
 
 
-<< Virtual envirorment and dependencies >>
+## Virtual envirorment and dependencies
 In the terminal of the folder project (wa_backend)
 
 - python -m venv .venv
@@ -11,15 +11,15 @@ In the terminal of the folder project (wa_backend)
 - pip install -U flask-cors
 - pip freeze > requirements.txt
 
-<< Creating the app >>
+## Creating the app
 touch api.py
 
-<< Run server >>
+## Run server
 Python api.py --> Runs in port 5000
 
-<< DB config >>
+## DB config
 python 
-from api import db
+from wa_backend import db
 db.create_all()
 
 ## STEPS AFTER CLONING REPOSITORY FROM GITHUB 
@@ -39,11 +39,14 @@ python api.py
 
 ## POSTGRESQL 
 https://www.youtube.com/watch?v=XZ_gAWdGzZk
+
 https://www.youtube.com/watch?v=w25ea_I89iM
+
 https://www.youtube.com/watch?v=3HPq12w-dww&list=PLIWLW8_gNNc1dLUGuSAzpsf3zRDrR-yKy&index=65
 
 ## ENV VARIABLES
 https://itnext.io/start-using-env-for-your-flask-project-and-stop-using-environment-variables-for-development-247dc12468be
+
 https://hackingandslacking.com/configuring-your-flask-application-4e5341d7affb
 
 
