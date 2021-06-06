@@ -19,7 +19,7 @@ Python api.py --> Runs in port 5000
 
 ## DB config
 python 
-from api import db
+from wa_backend import db
 db.create_all()
 
 ## STEPS AFTER CLONING REPOSITORY FROM GITHUB 
