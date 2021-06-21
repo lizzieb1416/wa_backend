@@ -1,0 +1,11 @@
+.vscode
+.venv
+.github
+.tox
+tests
+docs
+coverage*
+*.md
+*.txt
+*.json
+!.git
