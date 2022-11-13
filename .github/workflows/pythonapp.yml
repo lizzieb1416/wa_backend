@@ -21,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
       - name: Install application
         run: |
-          pip install . --use-feature=in-tree-build
+          pip install .
       - name: Install CI dependencies
         run: |
           pip install -r requirements_ci.txt
@@ -47,4 +47,3 @@ jobs:
       - name: Build
         run: |
           docker build .
-            
