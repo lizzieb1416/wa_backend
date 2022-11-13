@@ -6,6 +6,6 @@ tests
 docs
 coverage*
 *.md
-*.txt
+# *.txt
 *.json
 !.git

@@ -1,3 +1,4 @@
-from wa_backend import db
+from wa_backend import db, app
 
-db.create_all()
+with app.app_context():
+    db.create_all()
