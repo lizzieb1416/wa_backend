@@ -1,2 +1,24 @@
 [build-system]
 requires = ["setuptools>=42", "wheel", "setuptools_scm[toml]>=3.4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wa_backend"
+description = "white app flask backend"
+version = "0.0.0"
+requires-python = ">=3.10.8"
+readme = "README.md"
+
+dependencies = [
+  "Flask == 2.1.0",
+  "flask-restx == 1.0.3",
+  "gunicorn",
+  "Werkzeug == 2.2.2",
+  "tomli",
+  "Flask-Cors >= 3.0.10",
+  "Flask-SQLAlchemy >= 2.5.1",
+  "SQLAlchemy >= 1.4.11"
+]
+
+[project.optional-dependencies]
+ci = ["black", "pylint", "coverage", "pytest", "flake8", "tox"]

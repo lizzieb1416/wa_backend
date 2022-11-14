@@ -10,7 +10,7 @@ RUN python setup.py bdist_wheel
 
 FROM python:latest
 COPY --from=build /app/dist/ .
-RUN pip install wa_backend-0.0.0-py2.py3-none-any.whl
+RUN pip install wa_backend-0.0.0.whl
 # TODO : To be removed when plugged to external db
 COPY scripts/create_db.py .
 RUN python create_db.py
