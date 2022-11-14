@@ -6,7 +6,7 @@ WORKDIR /app
 COPY requirements_ci.txt requirements_ci.txt
 RUN pip install -r requirements_ci.txt
 COPY . .
-RUN python setup.py bdist_wheel
+RUN python -m build
 
 FROM python:latest
 COPY --from=build /app/dist/ .
