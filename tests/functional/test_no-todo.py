@@ -22,10 +22,5 @@ def test_base_route_post(flask_app):
     assert response.status_code == 405
     assert b'youpi' not in response.data
 
-def test_with_data_post(flask_app):
-    response = flask_app.post("/tasks/todo/", data={
-        "description": "Walk the dog"
-    })
-    assert response.status_code == 200
     
 

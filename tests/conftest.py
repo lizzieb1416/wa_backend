@@ -16,25 +16,6 @@ def flask_app():
     
     yield client
 
-# @pytest.fixture(scope='module')
-# def app_with_db(flask_app): 
-#     db.create_all()
-
-#     yield flask_app
-
-#     db.session.commit()
-#     db.drop_all()
-
-# @pytest.fixture
-# def app_with_data(app_with_db):
-#     todo = Task_model()
-#     todo.description = "Walk the dog"
-#     todo.completed = False
-#     db.session.add(todo)
-
-#     db.session.commit()
-
-#     yield app_with_db
 
     
 
